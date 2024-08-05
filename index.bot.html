@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="newstyle.css">
+    <!-- <link rel="stylesheet" href="board.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <title>pawnhub.org</title>
+
+</head>
+
+<body>
+    <div id="main" class="main">
+        <button class="openbtn" id="openbtn" onclick="openNav()">☰</button>
+        <div class="overlay" id="overlay" onclick="closeNav()"></div>
+        <div class="dashboard" id="offcanvasMenu">
+            <nav class="utility">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                            &#8617
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" style="text-decoration: none">
+                            <div class="play">
+                                <img src="images/icon.png" alt="Home">
+                                <span id="homepagetext">Home</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="game.html" style="text-decoration: none;">
+                            <div class="play w-9/10 ">
+                                <img src="images/play.png" alt="Play">
+                                <span>Play</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#puzzles" style="text-decoration: none;">
+                            <div class="play">
+                                <img src="images/puzzle.png" alt="Puzzles">
+                                <span>Puzzles</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#watch" style="text-decoration: none;">
+                            <div class="play">
+                                <img src="images/watch.png" alt="Watch">
+                                <span>Watch</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#news" style="text-decoration: none;">
+                            <div class="play">
+                                <img src="images/news.png" alt="News">
+                                <span>News</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#social" style="text-decoration: none;">
+                            <div class="play">
+                                <img src="images/collab.png" alt="Social">
+                                <span>Social</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <input type="text" class="search-input" placeholder="Search">
+            </nav>
+            <!--bottom option-->
+            <nav class="options">
+                <button class="box" onclick="toggleImage()" id="changeMode">
+                    <img src="images/light.png" alt="UI">
+                    <span>Light UI</span>
+                </button>
+                <button class="box">
+                    <img src="images/setting.png" alt="Settings">
+                    <span>Settings</span>
+                </button>
+                <button class="box">
+                    <img src="images/help.png" alt="Help">
+                    <span>Help</span>
+                </button>
+            </nav>
+        </div>
+
+        <div id="gameContainer">
+            <div class="gamePlay" id="23">
+                <div class="player">
+                    <div class="profileImg"></div>
+                    <div class="timer" id="player1-time" style="user-select: none;">10:00</div>
+                </div>
+                <div id="chessBoard" style="width: 100%;"></div>
+                <div class="player">
+                    <div class="profileImg"></div>
+                    <div class="timer" id="player2-time" style="user-select: none;">10:00</div>
+                </div>
+            </div>
+            <div id="features">
+                <div class="analysis">Game Analysis</div>
+                <div class="movepgn"></div>
+                <div class="edits">
+                    <button id="btn1"></button>
+                    <button id="btn2" onclick="undoMove()"></button>
+                    <button id="btn3"></button>
+                    <button id="btn4"></button>
+                </div>
+                <div class="newGame">
+                    <button class="new-rematch">New Game</button>
+                    <button class="new-rematch">Rematch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleImage() {
+            const body = document.body;
+            const toggleBtn = document.querySelector('#changeMode');
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                toggleBtn.querySelector('span').textContent = 'Dark UI';
+                toggleBtn.querySelector('img').src = 'images/dark.png';
+            } else {
+                toggleBtn.querySelector('span').textContent = 'Light UI';
+                toggleBtn.querySelector('img').src = 'images/light.png';
+            }
+        }
+
+        function openNav() {
+            document.getElementById("offcanvasMenu").style.minWidth = "150px";
+            document.getElementById("offcanvasMenu").style.width = "10%";
+
+            document.getElementById("overlay").classList.add("active");
+            
+        }
+
+        function closeNav() {
+            document.getElementById("offcanvasMenu").style.width = "0";
+            document.getElementById("offcanvasMenu").style.minWidth = "0";
+            document.getElementById("overlay").classList.remove("active");
+            // document.body.style.marginLeft = "0";
+        }
+
+    </script>
+    <script src="stockfish.js"></script>
+    <script src="chessBoard.js"></script>
+    <script src="play.bot.js"></script>
+    <script src="utility.bot.js"></script>
+</body>
+
+<!-- <script src="newScript.js"></script> -->
+
+</html>
