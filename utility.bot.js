@@ -32,6 +32,7 @@ initializeStockfish(skillLevel, hashSize, multipv);
 async function game() {
     fen = chessboard.fen();
     if (chessboard.turn === 'b') {
+        chessboard.disableDrag();
         bestmove = await getBestMove(depth, searchTime, fen);
         setTimeout(() => {
             let start = bestmove.slice(0, 2), end = bestmove.slice(2, 4);
@@ -40,6 +41,7 @@ async function game() {
             if (bestmove.length === 5) { chessboard.makeMove(start, end, `engineSays_${bestmove[4]}`); }
             else { chessboard.makeMove(start, end, 'byClick') };
         }, 210);
+        chessboard.enableDrag();
     }
     pgn = chessboard.PGN;
     pgnGenerator(pgn);
